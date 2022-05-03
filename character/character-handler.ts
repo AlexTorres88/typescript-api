@@ -10,6 +10,16 @@ async function getAll(req: express.Request, res: express.Response) {
   }
 }
 
+async function get(req: express.Request, res: express.Response) {
+  try {
+    const character = await characterService.get(req.params.id);
+    return res.status(200).send(character);
+  } catch (error) {
+    return res.status(500).send();
+  }
+}
+
 export const characterHandler = {
   getAll,
+  get,
 };
